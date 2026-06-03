@@ -11,10 +11,14 @@ const admin = require('./config/firebase');
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
-  cors: { origin: process.env.FRONTEND_URL || 'http://localhost:3000', credentials: true }
+  cors: { 
+    origin: [process.env.FRONTEND_URL || 'http://localhost:3000', 'https://quicksell-phi-one.vercel.app'], 
+    credentials: true 
+  }
 });
 
-app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:3000', credentials: true }));
+app.use(cors({ origin: [process.env.FRONTEND_URL || 'http://localhost:3000', 'https://quicksell-phi-one.vercel.app'], credentials: true }));
+
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
